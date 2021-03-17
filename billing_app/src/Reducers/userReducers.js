@@ -7,6 +7,10 @@ export default function userReducer(state = userintialValue , action ){
             return {...action.payload}
         }
 
+        case "CLEAR" : {
+            return userintialValue
+        }
+
         default : {
             return [...state]
         }

@@ -9,8 +9,11 @@ import productContainer from './Products/ProductContainer'
 import Home from './userAuth/Home'
 import Login from './userAuth/Login'
 import Registration from './userAuth/Registration'
+import {clear} from "../Actions/userActions"
+import {useDispatch} from 'react-redux'
 
  const NavBar=({toggle , handleToggle , history})=>{
+     const dispatch = useDispatch()
     
     return(
         <div>
@@ -25,6 +28,7 @@ import Registration from './userAuth/Registration'
                         <li><Link to="/dashboard">Dashboard</Link></li>
                         <li><Link to='' onClick = {()=>{
                             swal('successfully logout')
+                            dispatch(clear())
                             localStorage.removeItem('token')
                             history.push('/')
                             handleToggle()

@@ -26,3 +26,10 @@ export const userInfo=(data)=>{
         payload : data
     }
 }
+
+// clear the store of my account details 
+export const clear = ()=>{
+    return {
+        type : "CLEAR"
+    }
+}
