@@ -52,8 +52,8 @@ export default function Login({history , handleToggle}){
                     if(Object.keys(result).includes('errors')){
                         swal(result.message)
                     } else{
-                        localStorage.setItem('token',result.token)
                         swal('successfully loggedin')
+                        localStorage.setItem('token',result.token)
                         history.push('/')
                         handleToggle()
                     }
@@ -75,7 +75,7 @@ export default function Login({history , handleToggle}){
     return (
         <div>
             <form onSubmit ={handleSubmit}>
-                <input type = "email" value ={email} onChange = {handleInput} placeholder ="Emali" name ="email" />
+                <input type = "text" value ={email} onChange = {handleInput} placeholder ="Emali" name ="email" />
                 {formError.email && <span>{formError.email}</span>} <br/>
 
                 <input type = "password" value ={password} onChange ={handleInput} placeholder ="password" name ="password"/>
