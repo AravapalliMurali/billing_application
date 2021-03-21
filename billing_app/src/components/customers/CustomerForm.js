@@ -1,14 +1,14 @@
 import React,{useState} from 'react'
 import validator from 'validator'
 import {useDispatch} from 'react-redux'
-import { startAddCustomers } from '../../Actions/customerActions'
+import { startAddCustomers, startEditCustomer } from '../../Actions/customerActions'
 
 
-export default function CustomerForm(){
+export default function CustomerForm({id , name : title , email : mail , phNumber:mobile , handleToggle }){
     const dispatch  = useDispatch()
-    const [name , setName] = useState('')
-    const [phNumber , setphNumber] = useState('')
-    const [email , setEmail] = useState('')
+    const [name , setName] = useState(title ? title : '')
+    const [phNumber , setphNumber] = useState(mobile ? mobile : '')
+    const [email , setEmail] = useState(mail ? mail :'')
     const [formError , setFormError] = useState({})
     const error = {}
 
@@ -56,8 +56,13 @@ export default function CustomerForm(){
                 mobile : Number(phNumber),
                 email : email
             }
-    
-            dispatch(startAddCustomers(formData))
+
+            if(handleToggle){
+                dispatch(startEditCustomer(formData ,id))
+                handleToggle()
+            } else {
+                dispatch(startAddCustomers(formData))
+            }
     
             // reset form
     
@@ -73,7 +78,7 @@ export default function CustomerForm(){
 
     return(
         <div>
-            <h2>Add Customers</h2>
+            {title ? <h2>Edit Form</h2> : <h2>Add Customers Form</h2>}
             <form onSubmit = {handleSubmit}>
                 <input type = "text" value = {name} onChange ={handleInput} name = "name" placeholder = "Enter customer Name"/>
                 {formError.name && <span>{formError.name}</span>}<br/>
