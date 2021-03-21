@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
-import axios from 'axios'
-import swal from 'sweetalert'
 import validator from 'validator'
+import {useDispatch} from 'react-redux'
+import { startAddCustomers } from '../../Actions/customerActions'
 
 
 export default function CustomerForm(){
+    const dispatch  = useDispatch()
     const [name , setName] = useState('')
     const [phNumber , setphNumber] = useState('')
     const [email , setEmail] = useState('')
@@ -56,18 +57,7 @@ export default function CustomerForm(){
                 email : email
             }
     
-            axios.post(' http://dct-billing-app.herokuapp.com/api/customers', formData , {
-                headers:{
-                    "Authorization":`Bearer ${localStorage.getItem('token')}`
-                } })
-                .then((response)=>{
-                    const result = response.data
-                    if(Object.keys(result).includes('error')){
-                        alert(result.message)
-                    } else {
-                        swal('successfully added customer ')
-                    }
-                })
+            dispatch(startAddCustomers(formData))
     
             // reset form
     
