@@ -1,6 +1,9 @@
 import React,{useState} from 'react'
+import {useDispatch} from 'react-redux'
+import { startAddProduct } from '../../Actions/productActions'
 
 export default function ProductForm(){
+    const dispatch = useDispatch()
     const [name , setName] = useState('')
     const [price , setPrice] = useState('')
     const [formError ,setFormError]  = useState({})
@@ -42,10 +45,12 @@ export default function ProductForm(){
                 price : Number(price)
             }
 
+            dispatch(startAddProduct(formData))
+
             // reset the form 
             setName('')
             setPrice('')
-            
+
         } else {
             setFormError(error)
         }
