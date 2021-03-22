@@ -12,12 +12,12 @@ export default function CustomerContainer(){
 
     useEffect(()=>{
         dispatch(startGetCustomer())
-    } , [])
+    } ,[dispatch])
 
     return(
         <div>
             <h2>Customer component</h2>
-            <CustomerList data = {data}/>
+            <CustomerList/>
             <CustomerForm/>
         </div>
     )

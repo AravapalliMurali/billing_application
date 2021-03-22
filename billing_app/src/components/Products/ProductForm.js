@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
 import {useDispatch} from 'react-redux'
-import { startAddProduct } from '../../Actions/productActions'
+import { startAddProduct, startEditProduct } from '../../Actions/productActions'
 
-export default function ProductForm(){
+export default function ProductForm({id , name : title , price : cost , handleToggle}){
     const dispatch = useDispatch()
-    const [name , setName] = useState('')
-    const [price , setPrice] = useState('')
+    const [name , setName] = useState( title ? title :'')
+    const [price , setPrice] = useState(cost ? cost :'')
     const [formError ,setFormError]  = useState({})
     const error = {}
 
@@ -26,9 +26,9 @@ export default function ProductForm(){
 
         // for price
 
-        if(price.trim().length === 0){
-            error.price = "price can not be empty"
-        }
+        // if(price.trim().length === 0){
+        //     error.price = "price can not be empty"
+        // }
     }
 
     const handleSubmit = (e) =>{
@@ -45,7 +45,12 @@ export default function ProductForm(){
                 price : Number(price)
             }
 
-            dispatch(startAddProduct(formData))
+            if(handleToggle){
+                dispatch(startEditProduct(formData,id))
+                handleToggle()
+            } else{
+                dispatch(startAddProduct(formData))
+            }
 
             // reset the form 
             setName('')
@@ -69,7 +74,7 @@ export default function ProductForm(){
                 {formError.price && <span>{formError.price}</span>}
                 <br/>
 
-                <input type ="submit" name = "Add"/>
+                <input type ="submit" value = "Add"/>
             </form>
         </div>
     )

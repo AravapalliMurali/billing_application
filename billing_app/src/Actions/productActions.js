@@ -58,7 +58,7 @@ export const addProduct = (data)=>{
 
 //remove functionality 
 
-export const startRemoveCustomer =(id) =>{
+export const startRemoveProduct =(id) =>{
     return (dispatch)=>{
         axios.delete(`http://dct-billing-app.herokuapp.com/api/products/${id}`,  {
             headers:{
@@ -79,6 +79,36 @@ export const startRemoveCustomer =(id) =>{
 export const remove =(data) =>{
     return {
         type : "REMOVE" ,
+        payload : data
+    }
+}
+
+// Edit product 
+
+export const startEditProduct=(formData,id)=>{
+    return (dispatch)=>{
+        axios.put(`http://dct-billing-app.herokuapp.com/api/products/${id}`, formData ,{
+            headers:{
+                "Authorization":`Bearer ${localStorage.getItem('token')}`
+            } })
+            .then((response)=>{
+                const result = response.data
+                if(Object.keys(result).includes('errors')){
+                    alert(result.message)
+                } else {
+                    swal("successfully Edit the customer information")
+                    dispatch(editProduct(result))
+                }
+            })
+            .catch((err)=>{
+                console.log(err.message)
+            })
+    }
+}
+
+export const editProduct =(data)=>{
+    return {
+        type : "EDIT" ,
         payload : data
     }
 }

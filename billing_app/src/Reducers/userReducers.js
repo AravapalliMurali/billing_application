@@ -1,4 +1,4 @@
-const userintialValue = []
+const userintialValue = {}
 
 export default function userReducer(state = userintialValue , action ){
 
@@ -12,7 +12,7 @@ export default function userReducer(state = userintialValue , action ){
         }
 
         default : {
-            return [...state]
+            return {...state}
         }
     }
 }

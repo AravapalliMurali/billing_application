@@ -10,7 +10,7 @@ export default function MyAccount(){
 
     useEffect(()=>{
         dispatch(startgetUser())
-    },[])
+    },[dispatch])
 
     return(
         <div>

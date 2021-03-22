@@ -14,12 +14,12 @@ export default function ProductContainer(){
 
     useEffect(()=>{
         dispatch(startGetProducts())
-    },[])
+    },[dispatch])
 
     return(
         <div>
             <h2>Product Container</h2>
-            <ProductList data = {data}/>
+            <ProductList/>
             <ProductForm/>
         </div>
     )

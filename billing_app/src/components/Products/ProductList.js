@@ -1,7 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import ProductItem from './ProductItem'
 
-export default function ProductList({data}){
+export default function ProductList(){
+    const data = useSelector((state)=>{
+        return state.Product
+    })
 
     return(
         <div>

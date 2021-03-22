@@ -9,6 +9,20 @@ export default function productReducer(state = productInitialValue , action){
         case "ADD_PRODUCT" :{
             return [...state , {...action.payload}]
         }
+
+        case "REMOVE" : {
+            return state.filter(ele=> ele._id !== action.payload._id)
+        }
+        
+        case "EDIT" : {
+            return state.map(ele=>{
+                if(ele._id === action.payload._id){
+                    return {...ele , ...action.payload}
+                } else {
+                    return {...ele}
+                }
+            })
+        }
         
         default :{
             return [...state]

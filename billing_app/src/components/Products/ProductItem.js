@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {useDispatch} from 'react-redux'
-import {startRemoveCustomer} from '../../Actions/productActions'
+import { startRemoveProduct} from '../../Actions/productActions'
+import EditProduct from './EditProduct'
 
 export default function ProductItem({_id , name , price}){
     const dispatch = useDispatch()
@@ -9,7 +10,7 @@ export default function ProductItem({_id , name , price}){
     const handleRemove = () =>{
         const conformation = window.confirm(`Are you sure to remove the ${name} from the list `)
         if(conformation){
-            dispatch(startRemoveCustomer(_id))
+            dispatch(startRemoveProduct(_id))
         }
     }
 
@@ -21,12 +22,13 @@ export default function ProductItem({_id , name , price}){
     return (
         <div>
             {toggle ? (<div>
-
+                <EditProduct id = {_id} name = {name} price = {price} handleToggle ={handleToggle}/>
+                <button onClick ={handleToggle}>Cancel</button>
             </div>) : (<div>
                 <blockquote>
-                    Name : {name} |
-                    price : {price} |
-                    <button onClick ={handleRemove} >Remove</button> | <button onClick = {handleToggle}>Edit</button>
+                    <h4>Name : {name}</h4>
+                    <h4>Price :{price}</h4> 
+                    <button onClick ={handleRemove} >Remove</button>|<button onClick = {handleToggle}>Edit</button>
             </blockquote>
             </div>)}
         </div>
