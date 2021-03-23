@@ -1,11 +1,13 @@
 import React,{useState, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import { startGetProducts, startRemoveProduct } from '../../Actions/productActions'
-//import Basket from './Basket'
+import { startGetProducts } from '../../Actions/productActions'
+import Basket from './Basket'
+
 
 export default function Cart(props){
+    const customerId = props.match.params.id
+    const [quanity , setQuanity] = useState(1)
     const [basketItems , setBasketItems] = useState([])
-    const [toggle , setToggle] = useState(false)
     const dispatch  = useDispatch()
     const products = useSelector((state)=>{
         return state.product
@@ -15,38 +17,73 @@ export default function Cart(props){
         dispatch(startGetProducts())
     },[dispatch])
 
+    useEffect(()=>{
+        const result = JSON.parse(localStorage.getItem('lineItems')) || []
+        setBasketItems(result)
+    },[])
+
+    useEffect(()=>{
+        localStorage.setItem("lineItems",JSON.stringify(basketItems))
+    },[basketItems])
+
+    const handleRemove = (id)=>{
+        const result  = basketItems.filter(ele=>ele.line[0].product !== id)
+        setBasketItems(result)
+    }
+
     const handleItem = (productId)=>{
         const lineItems = {
             customer : customerId,
             line : [{
-                product : productId 
-                //quanity : Number(qty)
-            }]
-        }
-        //console.log(lineItems)
-        setBasketItems(lineItems)
+                product : productId, 
+                quanity : quanity
+            }]}
+        const result = [lineItems, ...basketItems]
+        setBasketItems(result)
     }
-    const customerId = props.match.params.id
-    const handleRemove = (id)=>{
-        dispatch(startRemoveProduct(id))
+
+    const handleAdd = (id)=>{
+        setQuanity(quanity + 1)
+            const newObj = {
+                line :[{
+                    product : id,
+                    quanity : quanity
+                }]}        
+            const result = basketItems.map(ele=>{
+                if(ele.line.map(ele=>ele.product) == id){
+                    return {...ele , ...newObj }  
+                } else {
+                    return {...ele}
+                }
+            })
+            setBasketItems(result)   
+    }
+    
+    const handleSub = (id)=>{
+        setQuanity(quanity - 1)
+        const newObj = {
+            line:[{
+                product : id,
+                quanity : quanity
+            }]}
+        const result = basketItems.map(ele=>{
+            if(ele.line.map(ele=>ele.product) == id){
+                return {...ele , ...newObj }  
+            } else {
+                return {...ele}
+            }})
+        setBasketItems(result)
     }
     return (
         <div>
-            <h3>cart Items </h3>
+            <h3>product Items </h3>
             {products.map(ele=>{
-                return (
-                    <div key = {ele._id}>
-                        <blockquote>
-                            <h4>Name : {ele.name}</h4>
-                            <h4>Price :{ele.price}</h4>
-                            {toggle ? (<div>
-                                <button>+</button>|<button>-</button><button onclick = {()=>{handleRemove(ele._id)}}>remove</button>
-                            </div>) : <button onClick = {()=>{handleItem(ele._id)}}>Add to cart</button>} 
-                        </blockquote>
-                    </div>
-                )
+                return <Basket key={ele._id} {...ele}
+                handleAdd={handleAdd} 
+                handleRemove ={handleRemove} 
+                handleItem={handleItem}
+                handleSub={handleSub}/>
             })}
-            {/* <Basket basketItems = {basketItems}/> */}
         </div>
     )
 }

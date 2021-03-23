@@ -1,18 +1,33 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-export default function Basket({basketItems}){
-
+export default function Basket({_id , name , price , handleRemove , handleItem,handleAdd ,handleSub}){
+    const [toggle , setToggle] = useState(false)
+    const handleChanges =()=>{
+        setToggle(!toggle)
+    }
     return(
         <div>
-            <h3>Basket - {basketItems.length}</h3>
-            {basketItems.map(ele=>{
-                return (<div key = {ele._id}>
-                    <blockquote>
-                        <h4>Name:{ele.name}</h4>
-                        <h4>price :{ele.price}</h4>
-                    </blockquote>
-                </div>)
-            })}
+            {toggle ? 
+            (<div>
+                <blockquote>
+                    <h4>Name : {name}</h4>
+                    <h4>Price :{price}</h4>
+                </blockquote>
+                <button onClick ={()=>{handleAdd(_id)}}>+</button>|<button onClick ={()=>{handleSub(_id)}}>-</button><button onClick = {()=>{
+                    handleRemove(_id)
+                    handleChanges()}}>remove</button>
+            </div>) :(
+            <div>
+                <blockquote>
+                    <h4>Name : {name}</h4>
+                    <h4>Price :{price}</h4>
+                </blockquote>
+                <button onClick = {()=>{
+                    handleItem(_id)
+                    handleChanges()
+                    }}>Add to cart</button>
+            </div>
+            ) } 
         </div>
     )
 }
