@@ -14,6 +14,8 @@ export default function ProductItem({_id , name , price}){
         }
     }
 
+    
+
     const handleToggle = ()=>{
         setToggle(!toggle)
     }

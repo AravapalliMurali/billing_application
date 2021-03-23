@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { startRemoveCustomer } from '../../Actions/customerActions'
+//import {buy} from '../../Actions/cartAction'
 import EditCustomer from './EditCustomer'
+import {Link} from 'react-router-dom'
 
 export default function CustomerItem({_id , name , email , mobile}){
     const dispatch = useDispatch()
@@ -18,6 +20,10 @@ export default function CustomerItem({_id , name , email , mobile}){
         setToggle(!toggle)
     }
 
+    // const handleShoping =()=>{
+    //     dispatch(buy(_id))
+    // }
+
     return (
         <div>
             {toggle ? (
@@ -32,6 +38,7 @@ export default function CustomerItem({_id , name , email , mobile}){
                 mobile : {mobile} |
                 email : {email}
                 <button onClick ={handleRemove} >Remove</button> | <button onClick = {handleToggle}>Edit</button>
+                <Link to={`/cart/${_id}`}>BuyItems</Link>
             </blockquote>
         </div>
         )}

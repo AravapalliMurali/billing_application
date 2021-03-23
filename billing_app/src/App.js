@@ -1,5 +1,6 @@
 import React,{useState , useEffect} from 'react'
 import NavBar from './components/NavBar'
+import {Typography} from '@material-ui/core'
 
 export default function App(){
   const [toggle , setToggle] = useState(false)
@@ -16,7 +17,12 @@ export default function App(){
 
   return (
     <div>
-      <h2> Billing Application</h2>
+      <Typography 
+        variant="h2"
+        align = "center"
+      >
+         Billing Application
+      </Typography>
       <NavBar handleToggle ={handleToggle} toggle ={toggle}/>
     </div>
   )

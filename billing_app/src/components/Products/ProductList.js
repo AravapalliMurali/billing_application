@@ -4,7 +4,7 @@ import ProductItem from './ProductItem'
 
 export default function ProductList(){
     const data = useSelector((state)=>{
-        return state.Product
+        return state.product
     })
 
     return(
