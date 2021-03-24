@@ -1,8 +1,8 @@
 // customer buying 
 
-export const buy=(id)=>{
+export const buy=(data)=>{
     return {
         type : "BUY" ,
-        payloda : id
+        payload : data
     }
 }

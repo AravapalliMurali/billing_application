@@ -6,6 +6,7 @@ import productReducer from '../Reducers/productReducers'
 import billReducer from '../Reducers/billReducers'
 import cartReducer from '../Reducers/cartReducers'
 
+//const result = JSON.parse(localStorage.getItem("billapplication"))
 const  configureStore =()=>{
     const store = createStore(combineReducers({
         user : userReducer ,

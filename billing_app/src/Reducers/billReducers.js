@@ -6,6 +6,14 @@ export default function billReducer( state = billInitialValue , action){
             return [...action.payload]
         }
 
+        case "ADD_BILL" : {
+            return [...state , {...action.payload}]
+        }
+
+        case "REMOVE" :{
+            return state.filter(ele=>ele._id !== action.payload._id)
+        }
+
         default : {
             return [...state]
         }

@@ -9,6 +9,7 @@ const store = configureStore()
 console.log(store.getState())
 
 store.subscribe(()=>{
+  //localStorage.setItem("billapplication" , JSON.stringify(store.getState()))
   console.log("updated store:", store.getState())
 })
 

@@ -11,7 +11,7 @@ import Login from './userAuth/Login'
 import Registration from './userAuth/Registration'
 import {clear} from "../Actions/userActions"
 import {useDispatch} from 'react-redux'
-import Cart from './Cart/Cart'
+import Cart from './Bills/Cart'
 
  const NavBar=({toggle , handleToggle , history})=>{
      const dispatch = useDispatch()
@@ -54,6 +54,7 @@ import Cart from './Cart/Cart'
                 return <Login {...props} handleToggle ={handleToggle}/>
             }} />
             <Route path = "/cart/:id" component ={Cart}/>
+            <Route path ="/billcontainer" component = {BillContainer}/>
 
         </div>
     )

@@ -2,6 +2,8 @@ import React,{useState, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import { startGetProducts } from '../../Actions/productActions'
 import Basket from './Basket'
+import {Link} from 'react-router-dom'
+import { buy } from '../../Actions/cartAction'
 
 
 export default function Cart(props){
@@ -18,13 +20,17 @@ export default function Cart(props){
     },[dispatch])
 
     useEffect(()=>{
-        const result = JSON.parse(localStorage.getItem('lineItems')) || []
-        setBasketItems(result)
-    },[])
-
-    useEffect(()=>{
-        localStorage.setItem("lineItems",JSON.stringify(basketItems))
+        dispatch(buy(basketItems))
     },[basketItems])
+
+    // useEffect(()=>{
+    //     const result = JSON.parse(localStorage.getItem('lineItems')) || []
+    //     setBasketItems(result)
+    // },[])
+
+    // useEffect(()=>{
+    //     localStorage.setItem("lineItems",JSON.stringify(basketItems))
+    // },[basketItems])
 
     const handleRemove = (id)=>{
         const result  = basketItems.filter(ele=>ele.line[0].product !== id)
@@ -45,6 +51,7 @@ export default function Cart(props){
     const handleAdd = (id)=>{
         setQuanity(quanity + 1)
             const newObj = {
+                customer : customerId,
                 line :[{
                     product : id,
                     quanity : quanity
@@ -62,6 +69,7 @@ export default function Cart(props){
     const handleSub = (id)=>{
         setQuanity(quanity - 1)
         const newObj = {
+            customer : customerId,
             line:[{
                 product : id,
                 quanity : quanity
@@ -84,6 +92,9 @@ export default function Cart(props){
                 handleItem={handleItem}
                 handleSub={handleSub}/>
             })}
+
+            <h4>Cart Items - {basketItems.length}</h4>
+            <Link to ="/billcontainer">Generate Bill</Link>
         </div>
     )
 }
