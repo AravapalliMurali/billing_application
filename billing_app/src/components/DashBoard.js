@@ -23,17 +23,17 @@ const useStyles = makeStyles((theme)=>({
 export default function Dashboard(){
     const classes = useStyles()
 
-    const customers = useSelector(state=>{
-        return state.customer
+    const customersCount = useSelector(state=>{
+        return state.customers
     })
     //products
 
-    const products = useSelector(state=>{
-        return state.product
+    const productsCount = useSelector(state=>{
+        return state.products
     })
     // bills
-    const bills = useSelector(state=>{
-        return state.bill
+    const billsCount = useSelector(state=>{
+        return state.bills
     })
 
     return(
@@ -58,7 +58,7 @@ export default function Dashboard(){
                             }
                             title="Products" variant ="h2"/>
                             <CardContent>
-                                <Typography variant ="subtitle1" >Count :{products.length}</Typography>
+                                <Typography variant ="subtitle1" >Count :{productsCount.length}</Typography>
                             </CardContent>
                         </Card>
                      </Grid>
@@ -75,7 +75,7 @@ export default function Dashboard(){
                             }
                             title="Customers" variant ="h2"/>
                             <CardContent>
-                                <Typography variant ="subtitle1" >Count :{customers.length}</Typography>
+                                <Typography variant ="subtitle1" >Count :{customersCount.length}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -92,13 +92,13 @@ export default function Dashboard(){
                             }
                             title="Bill count" variant ="h2"/>
                             <CardContent>
-                                <Typography variant ="subtitle1" >Count : {bills.length}</Typography>
+                                <Typography variant ="subtitle1" >Count : {billsCount.length}</Typography>
                         </CardContent>
                     </Card>
                     </Grid>
                 </Grid>
                 <Grid className = {classes.root} spacing ={4}>
-                    <Graph customers ={customers} products ={products} bills ={bills}/>
+                    <Graph customers ={customersCount} products ={productsCount} bills ={billsCount}/>
                 </Grid>
             </Container>
         </div>

@@ -60,7 +60,7 @@ export default function CustomerItem({_id , name , email , mobile}){
                             <CardActions>
                                 <Button onClick ={handleRemove}>Remove</Button>
                                 <Button onClick = {handleToggle}>Edit</Button>
-                                {/* <Button  component={Link} to={`/cart/${_id}`}>BuyItems</Button> */}
+                                <Button  component={Link} to={`/shopingcontainer/${_id}`}>BuyItems</Button>
                             </CardActions>
                         </Card>
                     </Grid>

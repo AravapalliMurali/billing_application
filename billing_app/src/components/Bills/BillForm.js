@@ -2,10 +2,14 @@ import React,{useState} from 'react'
 import {useDispatch} from "react-redux"
 import { startAddBill } from '../../Actions/billActions'
 
-export default function BillForm({customer , line }){
+export default function BillForm({Customerid ,Items}){
+
+
     const dispatch = useDispatch()
+
     const [date , setDate] = useState('')
-    const [customerId , setCustomerId] = useState(customer ? customer : '')
+    const [customerId , setCustomerId] = useState(Customerid ? Customerid :'')
+    console.log("customerid:", Customerid)
 
     const handleInput =(e)=>{
         const input = e.target.name
@@ -16,13 +20,21 @@ export default function BillForm({customer , line }){
         }
     }
 
+    const line = ()=>{
+        const result = Items.map(ele=>{
+            return {product : ele._id , quantity:ele.quantity}
+        })
+        return result
+        console.log(result) 
+    }
+
     const handleSubmit =(e)=>{
         e.preventDefault()
 
         const formData = {
             date : date,
             customer : customerId ,
-            lineItems : line
+            lineItems : line()
         }
 
         dispatch(startAddBill(formData))

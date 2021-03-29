@@ -10,10 +10,10 @@ import cartReducer from '../Reducers/cartReducers'
 const  configureStore =()=>{
     const store = createStore(combineReducers({
         user : userReducer ,
-        customer : customerReducer ,
-        product : productReducer,
-        bill : billReducer ,
-        cart : cartReducer
+        customers : customerReducer ,
+        products : productReducer,
+        bills : billReducer ,
+        cartItems : cartReducer
     }),applyMiddleware(thunk))
 
     return store

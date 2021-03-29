@@ -4,7 +4,7 @@ import BillItems from './BillItems'
 
 export default function BillList(){
     const data = useSelector((state)=>{
-        return state.bill
+        return state.bills
     })
 
     return(

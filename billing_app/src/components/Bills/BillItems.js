@@ -1,15 +1,22 @@
 import React from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch , useSelector} from 'react-redux'
 import { startRemoveBill } from '../../Actions/billActions'
 
 export default function BillItems({_id,date,customer ,lineItems,total}){
     const dispatch = useDispatch()
+    const products = useSelector((state)=>{
+        return state.products
+    })
+
+    // remove function 
     const handleRemove = ()=>{
         const conformation = window.confirm("Are you sure ")
         if(conformation){
             dispatch(startRemoveBill(_id))
         }
     }
+
+
     return(
         <div>
             <blockquote>

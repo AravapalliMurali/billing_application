@@ -5,23 +5,20 @@ import BillForm from './BillForm'
 import BillList from './BillList'
 
 
-export default function BillContainer(){
+export default function BillContainer(props){
+    const {Customerid} = props.location
     const dispatch  = useDispatch()
-    const cartItems = useSelector((state)=>{
-        return state.cart
+    const Items = useSelector((state)=>{
+        return state.cartItems
     })
-
     useEffect(()=>{
         dispatch(startGetBills())
-    } , [dispatch])
+    }, [dispatch])
 
     return(
         <div>
             <h2>Bill component</h2>
-            {cartItems.map((ele,i)=>{
-                console.log(ele.line)
-                return <BillForm key ={i} {...ele}/>
-            })}
+            <BillForm Items = {Items} Customerid ={Customerid}/>
             <BillList/>
         </div>
     )

@@ -42,7 +42,7 @@ export default function ProductItem({_id , name , price}){
     
 
     return (
-        <div>
+        <Container>
             {toggle ? 
              (<div>
                 <EditProduct id = {_id} name = {name} price = {price} handleToggle ={handleToggle}/>
@@ -55,7 +55,7 @@ export default function ProductItem({_id , name , price}){
                             <CardHeader avatar = {<Avatar >P</Avatar>} title = {name} />
                             <CardContent>
                                 <Typography variant ="h5" >{name}</Typography>
-                                <Typography variant ="subtitle1" >Price :{price} rs/.</Typography>
+                                <Typography variant ="subtitle1" >Price :${price} rs/.</Typography>
                             </CardContent>
                             <CardActions>
                                 <Button onClick ={handleRemove}>Remove</Button>
@@ -66,5 +66,5 @@ export default function ProductItem({_id , name , price}){
                 </Grid>
             </Container>
         ) }
-        </div>)
+        </Container>)
 }

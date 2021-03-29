@@ -14,6 +14,7 @@ import {useDispatch} from 'react-redux'
 import {AppBar, Button, Toolbar, Typography , IconButton , Menu , MenuItem} from '@material-ui/core'
 import { makeStyles} from "@material-ui/core/styles"
 import MoreIcon from '@material-ui/icons/MoreVert'
+import ShoppingContainer from './Bills/ShopingCart/ShoppingCartContainer'
 
 const useStyles = makeStyles((theme)=>({
     sectionDesktop : {
@@ -111,7 +112,8 @@ const useStyles = makeStyles((theme)=>({
             <Route path ="/login" render ={(props)=>{
                 return <Login {...props} handleToggle ={handleToggle}/>
             }} />
-            {/* <Route path = "/cart/:id" component ={Cart}/> */}
+
+            <Route path = "/shopingcontainer/:id" component ={ShoppingContainer}/>
             <Route path ="/billcontainer" component = {BillContainer}/>
             {mobileMenu}
         </Fragment>

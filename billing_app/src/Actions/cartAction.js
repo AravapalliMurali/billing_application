@@ -1,8 +1,8 @@
 // customer buying 
 
-export const buy=(data)=>{
+export const addItems=(data)=>{
     return {
-        type : "BUY" ,
+        type : "ADDITEMS" ,
         payload : data
     }
 }

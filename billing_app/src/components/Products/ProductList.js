@@ -7,7 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 export default function ProductList(){
     const [search , setSearch] = useState('')
     const data = useSelector((state)=>{
-        return state.product
+        return state.products
     })
 
     const handleInput = (e) => {
