@@ -22,12 +22,13 @@ export default function BillForm({customer , line }){
         const formData = {
             date : date,
             customer : customerId ,
-            lineItems : line.map(ele=>{
-                return {...ele}
-            })
+            lineItems : line
         }
 
         dispatch(startAddBill(formData))
+
+        setDate('')
+        setCustomerId('')
     }
     return(
         <div>

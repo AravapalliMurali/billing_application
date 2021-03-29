@@ -1,11 +1,24 @@
 import React,{useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { startRemoveCustomer } from '../../Actions/customerActions'
-//import {buy} from '../../Actions/cartAction'
 import EditCustomer from './EditCustomer'
 import {Link} from 'react-router-dom'
+import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Container, Grid, IconButton, Typography} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
+import ReceiptIcon from '@material-ui/icons/Receipt';
+
+const useStyles = makeStyles((theme)=>({
+    root : {
+        width : '100vw',
+        height : '35vh',
+        //backgroundColor : theme.palette.grey[200]
+        paddingTop: theme.spacing(5)
+    }
+}))
 
 export default function CustomerItem({_id , name , email , mobile}){
+    const classes = useStyles()
+
     const dispatch = useDispatch()
     const [toggle , setToggle] = useState(false)
 
@@ -20,9 +33,6 @@ export default function CustomerItem({_id , name , email , mobile}){
         setToggle(!toggle)
     }
 
-    // const handleShoping =()=>{
-    //     dispatch(buy(_id))
-    // }
 
     return (
         <div>
@@ -32,16 +42,30 @@ export default function CustomerItem({_id , name , email , mobile}){
                     <button onClick = {handleToggle}>cancel</button>
                 </div>
         ) : (
-            <div>
-            <blockquote>
-                Name : {name} |
-                mobile : {mobile} |
-                email : {email}
-                <button onClick ={handleRemove} >Remove</button> | <button onClick = {handleToggle}>Edit</button>
-                <Link to={`/cart/${_id}`}>BuyItems</Link>
-            </blockquote>
-        </div>
-        )}
-
+            <div className ={classes.root} >
+                <Grid container spacing ={2}>
+                    <Grid item xs ={6} sm={3}>
+                        <Card>
+                            <CardHeader avatar = {<Avatar >C</Avatar>} title = {name} 
+                            action={
+                                <IconButton component ={Link} to ={`/cart/${_id}`}>
+                                    <ReceiptIcon/>
+                                </IconButton>
+                            }/>
+                            <CardContent>
+                                <Typography variant ="h5" >{name}</Typography>
+                                <Typography variant ="subtitle1" >email:{email}</Typography>
+                                <Typography variant ="subtitle1" >mobile : {mobile}</Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button onClick ={handleRemove}>Remove</Button>
+                                <Button onClick = {handleToggle}>Edit</Button>
+                                {/* <Button  component={Link} to={`/cart/${_id}`}>BuyItems</Button> */}
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </div>
+        ) }
         </div>)
 }

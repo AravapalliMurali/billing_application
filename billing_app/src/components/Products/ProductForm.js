@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { startAddProduct, startEditProduct } from '../../Actions/productActions'
+import {Button, Container, Paper, TextField, Typography ,Box, Grid} from '@material-ui/core'
+
 
 export default function ProductForm({id , name : title , price : cost , handleToggle}){
     const dispatch = useDispatch()
@@ -64,18 +66,27 @@ export default function ProductForm({id , name : title , price : cost , handleTo
     
     return (
         <div>
-            <h2>Add Product</h2>
-            <form onSubmit = {handleSubmit}>
-                <input type = "text" name = "name" value = {name} onChange = {handleInput} placeholder ="Name of product" />
-                {formError.name && <span>{formError.name}</span>}
-                <br/>
+            <Container>
+                <Grid>
+                <Paper component ={Box} width ="60%" mx= "auto" p={6}>
+                <Typography variant ="h5">
+                    Add Product Form
+                </Typography>
 
-                <input type = "text" name = "price" value = {price} onChange ={handleInput} placeholder ="price.."/>
-                {formError.price && <span>{formError.price}</span>}
-                <br/>
+                <form onSubmit = {handleSubmit}>
+                <TextField fullWidth margin ="normal" variant ="outlined" color ="secondary"
+                label="Product Name" type = "text" name = "name" value = {name} onChange = {handleInput} placeholder ="Name of product"/>
+                {formError.name && <span>{formError.name}</span>}<br/>
+                
+                <TextField fullWidth margin ="normal" variant ="outlined" color ="secondary"
+                label="Price" type = "text" name = "price" value = {price} onChange ={handleInput} placeholder ="price.." />
+                {formError.phNumber && <span>{formError.phNumber}</span>}<br/>
 
-                <input type ="submit" value = "Add"/>
+                <Button type="submit" variant="contained" color="secondary" margin="left"> ADD </Button>
             </form>
+                </Paper>
+                </Grid>
+            </Container>
         </div>
     )
 }

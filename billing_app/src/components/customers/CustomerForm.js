@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import validator from 'validator'
 import {useDispatch} from 'react-redux'
 import { startAddCustomers, startEditCustomer } from '../../Actions/customerActions'
+import {Button, Container, Paper, TextField, Typography ,Box} from '@material-ui/core'
 
 
 export default function CustomerForm({id , name : title , email : mail , phNumber:mobile , handleToggle }){
@@ -78,19 +79,32 @@ export default function CustomerForm({id , name : title , email : mail , phNumbe
 
     return(
         <div>
-            {title ? <h2>Edit Form</h2> : <h2>Add Customers Form</h2>}
-            <form onSubmit = {handleSubmit}>
-                <input type = "text" value = {name} onChange ={handleInput} name = "name" placeholder = "Enter customer Name"/>
+            <Container>
+                <Paper component ={Box} width ="60%" mx= "auto" p={6}>
+                {title ?( <Typography variant ="h5">
+                    Edit Form
+                </Typography>) : (<Typography variant ="h5">
+                    Add Customers Form
+                </Typography>)}
+
+                <form onSubmit = {handleSubmit}>
+                <TextField fullWidth margin ="normal" variant ="outlined" color ="secondary"
+                label="Customer Name" type = "text" value = {name} onChange ={handleInput} name = "name" placeholder = "Enter customer Name"/>
                 {formError.name && <span>{formError.name}</span>}<br/>
                 
-                <input type = "text" value = {phNumber} onChange ={handleInput} name = "phNumber" placeholder ="Enter PhNumber"/>
+                <TextField fullWidth margin ="normal" variant ="outlined" color ="secondary"
+                label="PhoneNumber" type = "text" value = {phNumber} onChange ={handleInput} name = "phNumber" placeholder ="Enter PhNumber"/>
                 {formError.phNumber && <span>{formError.phNumber}</span>}<br/>
 
-                <input type = "text" value = {email} onChange = {handleInput} name = "email" placeholder = "Email"/>
+                <TextField fullWidth margin ="normal" variant ="outlined" color ="secondary"
+                label="Email" type = "text" value = {email} onChange = {handleInput} name = "email" placeholder = "Email"/>
                 {formError.email && <span>{formError.email}</span>}<br/>
 
-                <input type ="submit"  value = "Add"/>
+                <Button type="submit" variant="contained" color="secondary" margin="left"> ADD </Button>
             </form>
+
+                </Paper>
+            </Container>
         </div>
     )
 }

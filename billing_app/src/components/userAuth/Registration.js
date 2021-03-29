@@ -2,8 +2,21 @@ import React,{useState} from 'react'
 import axios from 'axios'
 import swal from 'sweetalert'
 import validator from 'validator'
+import {Box, Container, Typography,Paper, TextField, Button } from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
+
+const useStyles  = makeStyles(theme =>({
+    root :{
+        width :'75vw',
+        height : "150vh",
+        //backgroundColor : theme.palette.grey[300],
+        paddingTop : theme.spacing(5)
+    }
+}))
 
 export default function Registration({history}){
+    const classes = useStyles()
+
     const [userName, steUserName] = useState('')
     const [email , setEmail] = useState('')
     const [password , setPassword] = useState('')
@@ -90,31 +103,46 @@ export default function Registration({history}){
                 setBusinessName('')
                 setAddress('')
 
+        } else {
+            setFormErrors(errors)
         }
 
     }
 
     return(
-        <div>
-            <form onSubmit ={handleSubmit}>
-            <input type="text" value ={userName} name ="username" onChange ={handleInput} placeholder ="Enter username"/> 
-            {formErrors.username && <span>{formErrors.username}</span>}<br/>
+        <div style={{backgroundImage : 'url(https://i.pinimg.com/originals/17/17/48/1717482fa674b0a11eff8b42976eccaa.jpg)', height :'700px'}}>
+            <Container className = {classes.root} maxWidth="md">
+                <Paper component ={Box} width ="40%" mx= "auto" p={4}>
+                    <Typography variant ="h4">
+                        Registration Form 
+                    </Typography>
+                    <form onSubmit={handleSubmit}>
+                        <TextField fullWidth placeholder="Enter your Name" margin ="normal" variant ="outlined" color ="secondary" label ="Name"
+                        value ={userName} name ="username" onChange ={handleInput}/>
+                        {formErrors.username && <span style={{color : 'red'}}>{formErrors.username}</span>}
 
-            <input type = "text" value ={email} name ="email" onChange = {handleInput} placeholder ="Enter Email"/> 
-            {formErrors.email && <span>{formErrors.email}</span>}<br/>
 
-            <input type = "password" value ={password} name ="password" onChange ={handleInput} placeholder ="Password"/> 
-            {formErrors.password && <span>{formErrors.password}</span>}<br/>
+                        <TextField fullWidth placeholder ="Enter your Email" margin ="normal" variant ="outlined" color ="secondary" label ="Email"
+                        value ={email} name ="email" onChange = {handleInput}/>
+                        {formErrors.email && <span style={{color : 'red'}}>{formErrors.email}</span>}
 
-            <input type ="text" value= {businessName} name = "businessName" onChange ={handleInput} placeholder = "business name"/>
-            {formErrors.businessName && <span>{formErrors.businessName}</span>} <br/>
+                        <TextField fullWidth placeholder ="Enter Password" margin ="normal" variant ="outlined" color ="secondary" label ="Password"
+                        type = "password" value ={password} name ="password" onChange ={handleInput}/>
+                        { formErrors.password && <span style={{color : 'red'}}> {formErrors.password} </span> }
 
-            <textarea type ="text" value ={address} name ="address" onChange ={handleInput} placeholder ="Address"/>
-            {formErrors.address && <span>{formErrors.address}</span>}
-            <br/>
+                        <TextField fullWidth placeholder ="Enter your businessName" margin ="normal" variant ="outlined" color ="secondary" label ="Business Name"
+                        value= {businessName} name = "businessName" onChange ={handleInput}/>
+                        {formErrors.businessName && <span style={{color : 'red'}}>{formErrors.businessName}</span>}
 
-            <input type = "submit" value="register"/>
-            </form>
+                        <TextField fullWidth placeholder ="Enter your Address" margin ="normal" variant ="outlined" color ="secondary" label ="Address" multiline
+                        rows ={4} value ={address} name ="address" onChange ={handleInput}/>
+                        {formErrors.address && <span style={{color : 'red'}}>{formErrors.address}</span>}
+
+                        <Button type="submit" variant="contained" color="secondary" float ='left'> SignUp </Button>
+
+                    </form>
+                </Paper>
+            </Container>
         </div>
     )
 }
