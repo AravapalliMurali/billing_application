@@ -23,10 +23,10 @@ export default function ProductContainer(){
                     </Typography>
                 </Grid>
                 <Grid container direction="row">
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={9}>
                         <ProductList/>
                     </Grid>
-                    <Grid style ={{position:"relative", top:"30",textAlign:"center"}} item xs={12} sm={6}>
+                    <Grid style ={{position:"relative", top:"30",textAlign:"center"}} item xs={12} sm={3}>
                         <ProductForm/>
                     </Grid>
                 </Grid>

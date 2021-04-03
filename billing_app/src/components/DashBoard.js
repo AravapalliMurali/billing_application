@@ -1,6 +1,6 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import {Avatar, Card, CardContent, CardHeader, Container, Grid, IconButton, Typography} from '@material-ui/core'
+import {Avatar, Card, CardContent,Divider, CardHeader, Container, Grid, IconButton, Typography} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import ListIcon from '@material-ui/icons/List'
 import Graph from './Graph'
@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme)=>({
         textAlign: 'center',
         color: theme.palette.text.secondary,
       },
+    divider: {
+        margin: theme.spacing(2, 0),
+    },
+    
 }))
 
 export default function Dashboard(){
@@ -35,6 +39,9 @@ export default function Dashboard(){
     const billsCount = useSelector(state=>{
         return state.bills
     })
+
+    const latestBills = billsCount.slice(Math.max(billsCount.length -5 , 0))
+    console.log('bwbwwhc:',latestBills)
 
     return(
         <div>
@@ -97,6 +104,7 @@ export default function Dashboard(){
                     </Card>
                     </Grid>
                 </Grid>
+                <Divider className={classes.divider} />
                 <Grid className = {classes.root} spacing ={4}>
                     <Graph customers ={customersCount} products ={productsCount} bills ={billsCount}/>
                 </Grid>

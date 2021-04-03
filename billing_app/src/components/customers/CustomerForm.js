@@ -101,10 +101,12 @@ export default function CustomerForm({id , name : title , email : mail , phNumbe
                 {formError.email && <span>{formError.email}</span>}<br/>
 
                 <Button type="submit" variant="contained" color="secondary" margin="left"> ADD </Button>
+
+                {handleToggle && <Button onClick = {handleToggle} variant ="contained"  margin ="left"  color ="secondary">cancel</Button>}
             </form>
 
                 </Paper>
-            </Container>
+            </Container> 
         </div>
     )
 }

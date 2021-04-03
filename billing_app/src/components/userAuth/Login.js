@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(2),
         backgroundColor: theme.palette.secondary.main,
         //paddingTop : theme.spacing(2),
-        margin : 'auto'
         },
 
     root :{
@@ -27,6 +26,7 @@ export default function Login({history , handleToggle}){
     const [password , setPassword] = useState('')
     const [formError , setFormError] = useState({})
     const error = {}
+
 
     const handleInput = (e)=>{
         const input = e.target.name
@@ -93,6 +93,7 @@ export default function Login({history , handleToggle}){
     const classes = useStyles();
 
     return (
+        <div style ={{backgroundImage:  'url(https://u.a7.org/pictures/831/831477.jpg)',backgroundSize: 'cover' , height : "700px"}}>
         <Container className = {classes.root} maxWidth="md" component="main"  style={{textAlign : "center"}}>
             <Paper component ={Box} width ="40%" mx= "auto" p={4}>
                 <Avatar  className={classes.avatar} >
@@ -120,5 +121,6 @@ export default function Login({history , handleToggle}){
                </form>
             </Paper>
         </Container>
+        </div>
     )
 }

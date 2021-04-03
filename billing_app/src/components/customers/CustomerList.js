@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useSelector } from 'react-redux'
 import CustomerItem from './CustomerItem'
-import {Container, TextField ,InputAdornment, Grid, Typography } from '@material-ui/core'
+import { TextField ,InputAdornment, Grid, Typography } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 
 export default function CustomerList(){
@@ -26,7 +26,6 @@ export default function CustomerList(){
     }
     return (
         <div>
-            <Container>
                 <form onSubmit = {handleSubmit}>
                     <TextField type = "text" value = {search} onChange = {handleInput} placeholder ="search Customer" 
                     fullWidth variant = "outlined" color ="secondary" margin ="normal" InputProps={{
@@ -42,12 +41,15 @@ export default function CustomerList(){
                         Customer List - {data.length}
                     </Typography>
                 </Grid>
+                <Grid container spacing={2} style={{overflowY : 'scroll', maxHeight : '600px'}} >
                 {
                 handleSearch().map(ele =>{
-                    return <CustomerItem  key = {ele._id} {...ele}/>
-                })
-                }
-            </Container>
+                    return (
+                    <Grid item xs={4} key={ele._id}>
+                        <CustomerItem  {...ele} />
+                    </Grid> )
+                })}
+                </Grid>
         </div>
     )
 }

@@ -9,7 +9,7 @@ export default function BillForm({Customerid ,Items}){
 
     const [date , setDate] = useState('')
     const [customerId , setCustomerId] = useState(Customerid ? Customerid :'')
-    console.log("customerid:", Customerid)
+    //console.log("customerid:", Customerid)
 
     const handleInput =(e)=>{
         const input = e.target.name
@@ -25,14 +25,14 @@ export default function BillForm({Customerid ,Items}){
             return {product : ele._id , quantity:ele.quantity}
         })
         return result
-        console.log(result) 
+        //console.log(result) 
     }
 
     const handleSubmit =(e)=>{
         e.preventDefault()
 
         const formData = {
-            date : date,
+            date : date ,//moment().format('MMMM Do YYYY, h:mm:ss a'),
             customer : customerId ,
             lineItems : line()
         }

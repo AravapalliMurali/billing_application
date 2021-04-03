@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { startRemoveProduct} from '../../Actions/productActions'
 import EditProduct from './EditProduct'
-import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Container, Grid, Paper, Typography} from '@material-ui/core'
+import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid,  Typography} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme)=>({
@@ -42,16 +42,16 @@ export default function ProductItem({_id , name , price}){
     
 
     return (
-        <Container>
+        <div>
             {toggle ? 
              (<div>
                 <EditProduct id = {_id} name = {name} price = {price} handleToggle ={handleToggle}/>
                 <button onClick ={handleToggle}>Cancel</button>
             </div>) : (
-            <Container className ={classes.root} >
-                <Grid container spacing ={1}>
-                    <Grid item xs={3} className={classes.paper}>
-                        <Card container >
+            <div elevation={4} className ={classes.root} >
+                <Grid container spacing ={2}>
+                    <Grid item>
+                        <Card className={classes.paper} >
                             <CardHeader avatar = {<Avatar >P</Avatar>} title = {name} />
                             <CardContent>
                                 <Typography variant ="h5" >{name}</Typography>
@@ -64,7 +64,7 @@ export default function ProductItem({_id , name , price}){
                         </Card>
                     </Grid>
                 </Grid>
-            </Container>
+            </div>
         ) }
-        </Container>)
+        </div>)
 }
