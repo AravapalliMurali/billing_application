@@ -41,7 +41,7 @@ export default function CustomerList(){
                         Customer List - {data.length}
                     </Typography>
                 </Grid>
-                <Grid container spacing={2} style={{overflowY : 'scroll', maxHeight : '600px'}} >
+                <Grid container spacing={2} style={{overflowX:"scroll" , maxHeight:'600px'}} >
                 {
                 handleSearch().map(ele =>{
                     return (

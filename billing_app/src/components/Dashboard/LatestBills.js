@@ -1,14 +1,13 @@
 import React from 'react'
-import {useDispatch , useSelector} from 'react-redux'
-import { startRemoveBill } from '../../Actions/billActions'
-import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Container, Grid, Typography} from '@material-ui/core'
+import {Avatar, Card, CardContent, CardHeader, Container, Grid, Typography} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
+import { useSelector} from 'react-redux'
 
 
 const useStyles = makeStyles((theme)=>({
     root : {
         width : '100vw',
-        height : '70vh',
+        height : '60vh',
         //backgroundColor : theme.palette.grey[200]
         paddingTop: theme.spacing(5)
     } ,
@@ -16,7 +15,7 @@ const useStyles = makeStyles((theme)=>({
         padding: theme.spacing(1) }
 }))
 
-export default function BillItems({_id,date,customer ,lineItems}){
+export default function LatestBills({_id,date,customer ,lineItems}) {
 
     // billing amount part 
     const totalProductsPrice = lineItems.reduce((a,c)=>a+c.quantity * c.price,0)
@@ -25,7 +24,6 @@ export default function BillItems({_id,date,customer ,lineItems}){
     const TotalPrice = totalProductsPrice + GstPrice + shippingCharges
 
     const classes = useStyles()
-    const dispatch = useDispatch()
 
     // customer Name
 
@@ -37,24 +35,15 @@ export default function BillItems({_id,date,customer ,lineItems}){
 
     const ProductName = useSelector((state)=>{
         const result = []
-      for(const item of lineItems){
-          const productItem = state.products.find(ele=>ele._id === item.product)
-          //console.log("productItem:" , productItem)
-          result.push({...productItem , ...item})
-      }  
-      return result
+    for(const item of lineItems){
+        const productItem = state.products.find(ele=>ele._id === item.product)
+        //console.log("productItem:" , productItem)
+        result.push({...productItem , ...item})
+    }  
+    return result
     })
-    //console.log("products:",ProductName)
-    // remove function 
-    const handleRemove = ()=>{
-        const conformation = window.confirm("Are you sure ")
-        if(conformation){
-            dispatch(startRemoveBill(_id))
-        }
-    }
 
-
-    return(
+    return (
         <div>
             <Container elevation ={4} className ={classes.root}>
                 <Grid container spacing={2}>
@@ -76,9 +65,6 @@ export default function BillItems({_id,date,customer ,lineItems}){
                                 <Typography variant ="subtitle2">Shipping Charges: {shippingCharges}</Typography>
                                 <Typography variant ="subtitle2">Total: {TotalPrice}</Typography>
                             </CardContent>
-                            <CardActions>
-                                <Button onClick={handleRemove} color="secondary">Remove</Button>
-                            </CardActions>
                         </Card>
                     </Grid>
                 </Grid> 

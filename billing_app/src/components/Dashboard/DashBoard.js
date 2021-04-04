@@ -5,6 +5,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import ListIcon from '@material-ui/icons/List'
 import Graph from './Graph'
 import {Link} from 'react-router-dom'
+import LatestBills from './LatestBills'
 
 
 const useStyles = makeStyles((theme)=>({
@@ -40,8 +41,8 @@ export default function Dashboard(){
         return state.bills
     })
 
-    const latestBills = billsCount.slice(Math.max(billsCount.length -5 , 0))
-    console.log('bwbwwhc:',latestBills)
+    const latestBills = billsCount.slice(Math.max(billsCount.length -4 , 0))
+    //console.log('bwbwwhc:',latestBills)
 
     return(
         <div>
@@ -105,8 +106,21 @@ export default function Dashboard(){
                     </Grid>
                 </Grid>
                 <Divider className={classes.divider} />
-                <Grid className = {classes.root} spacing ={4}>
-                    <Graph customers ={customersCount} products ={productsCount} bills ={billsCount}/>
+                <Grid>
+                     <Typography variant ="h5"> Latest Bills </Typography>
+                </Grid>
+                <Grid container  spacing={2} className ={classes.root}>
+                    <Grid container spacing={2} item xs={7} >
+                        {latestBills.map(ele =>{
+                            return (
+                            <Grid item xs={5} key={ele._id}>
+                                <LatestBills {...ele} />
+                            </Grid> )
+                        })}
+                    </Grid>
+                    <Grid  item xs={4}> 
+                        <Graph customers ={customersCount} products ={productsCount} bills ={billsCount}/>
+                    </Grid>
                 </Grid>
             </Container>
         </div>

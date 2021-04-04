@@ -52,7 +52,7 @@ export default function CustomerItem({_id , name , email , mobile}){
                         <Card className ={classes.paper}>
                             <CardHeader avatar = {<Avatar >C</Avatar>} title = {name} 
                             action={
-                                <IconButton component ={Link} to ={`/cart/${_id}`}>
+                                <IconButton component ={Link} to ={`/customerbills/${_id}`}>
                                     <ReceiptIcon/>
                                 </IconButton> 
                             }/>

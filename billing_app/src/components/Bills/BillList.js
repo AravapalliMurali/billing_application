@@ -4,7 +4,7 @@ import BillItems from './BillItems'
 import { Grid, Typography } from '@material-ui/core'
 
 
-export default function BillList({TotalPrice ,subTotal ,GstPrice,shippingCharges}){
+export default function BillList(){
     const data = useSelector((state)=>{
         return state.bills
     })
@@ -16,14 +16,12 @@ export default function BillList({TotalPrice ,subTotal ,GstPrice,shippingCharges
                         Bills  - {data.length}
                     </Typography>
                 </Grid>
-                <Grid container spacing={2} style={{overflowY : 'scroll', maxHeight : '600px'}} >
+                <Grid container spacing={2} style={{overflow : 'scroll', maxHeight : '600px'}} >
                 {
                 data.map(ele =>{
                     return (
                     <Grid item xs={4} key={ele._id}>
-                        <BillItems {...ele} TotalPrice ={TotalPrice} 
-                        subTotal={subTotal} GstPrice = {GstPrice}
-                        shippingCharges={shippingCharges}/>
+                        <BillItems {...ele} />
                     </Grid> )
                 })}
                 </Grid>

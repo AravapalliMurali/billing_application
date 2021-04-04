@@ -46,7 +46,7 @@ export default function ProductItem({_id , name , price}){
             {toggle ? 
              (<div>
                 <EditProduct id = {_id} name = {name} price = {price} handleToggle ={handleToggle}/>
-                <button onClick ={handleToggle}>Cancel</button>
+                <Button onClick ={handleToggle}>Cancel</Button>
             </div>) : (
             <div elevation={4} className ={classes.root} >
                 <Grid container spacing ={2}>

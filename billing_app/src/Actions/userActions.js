@@ -1,4 +1,5 @@
 import axios from 'axios'
+import swal from 'sweetalert'
 
 
 // getting user account details
@@ -15,7 +16,7 @@ export const startgetUser = ()=>{
             dispatch(userInfo(result))
         })
         .catch((err)=>{
-            console.log(err.message)
+            swal(err.message)
         })
     }
 }

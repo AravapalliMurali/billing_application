@@ -36,11 +36,7 @@ export default function Cart({cartItems , removeProduct ,handleCheckOut, addItem
             <button onClick ={handleCheckOut}> Check Out</button>|
             <Link to ={{
                 pathname:'/billcontainer',
-                Customerid : CustomerId,
-                subTotal : totalProductsPrice ,
-                Gst : gstPrice,
-                shippingCharges : shippingCharges,
-                TotalPrice : totalAmount
+                Customerid : CustomerId
                 }}
                 >Generate Bill
             </Link>

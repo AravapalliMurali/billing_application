@@ -12,13 +12,13 @@ export const startGetCustomer =()=>{
         .then((response)=>{
             const result = response.data
             if(Object.keys(result).includes('errors')){
-                alert(result.message)
+                swal(result.errors)
             } else {
                 dispatch(getCustomers(result))
             }
         })
         .catch((err)=>{
-            console.log(err.message)
+            swal(err.message)
         })
     }
 }
@@ -40,15 +40,15 @@ export const startAddCustomers= (formData) =>{
                 } })
                 .then((response)=>{
                     const result = response.data
-                    if(Object.keys(result).includes('error')){
-                        alert(result.message)
+                    if(Object.keys(result).includes('errors')){
+                        swal(result.errors)
                     } else {
                         swal('successfully added customer ')
                         dispatch(addCustomer(result))
                     }
                 })
                 .catch((err)=>{
-                    console.log(err.message)
+                    swal(err.message)
                 })
     }
 }
@@ -71,11 +71,14 @@ export const startRemoveCustomer =(id) =>{
         .then((response)=>{
             const result  = response.data
             if(Object.keys(result).includes('errors')){
-                alert(result.message)
+                swal(result.errors)
             } else{
                 swal("successfully removed the customer ")
                 dispatch(remove(result))
             }
+        })
+        .catch((err)=>{
+            swal(err.message)
         })
     }
 }
@@ -96,14 +99,14 @@ export const startEditCustomer=(formData ,id)=>{
             .then((response)=>{
                 const result = response.data
                 if(Object.keys(result).includes('errors')){
-                    alert(result.message)
+                    swal(result.errors)
                 } else {
                     swal("successfully Edit the customer information")
                     dispatch(editCustomer(result))
                 }
             })
             .catch((err)=>{
-                console.log(err.message)
+                swal(err.message)
             })
     }
 }

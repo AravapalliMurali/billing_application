@@ -69,7 +69,7 @@ export default function Login({history , handleToggle}){
                 .then((responce)=>{
                     const result = responce.data
                     if(Object.keys(result).includes('errors')){
-                        swal(result.message)
+                        swal(result.errors)
                     } else{
                         swal('successfully loggedin')
                         localStorage.setItem('token',result.token)
@@ -78,7 +78,7 @@ export default function Login({history , handleToggle}){
                     }
                 })
                 .catch((err)=>{
-                    console.log(err.message)
+                    swal(err.message)
                 })
     
     

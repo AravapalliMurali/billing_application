@@ -12,10 +12,13 @@ export const startGetBills=()=>{
         .then((response)=>{
             const result = response.data
             if(Object.keys(result).includes('errors')){
-                alert(result.message)
+                swal(result.errors)
             } else {
                 dispatch(getBill(result))
             }
+        })
+        .catch((err)=>{
+            swal(err.message)
         })
     }
 }
@@ -36,14 +39,14 @@ export const startAddBill= (FormData)=>{
         .then((response)=>{
             const result = response.data
             if(Object.keys(result).includes('errors')){
-                alert(result.message)
+                swal(result.errors)
             } else {
                 swal("successfully create the bill ")
                 dispatch(AddBill(result))
             }
         })
         .catch((err)=>{
-            console.log(err.message)
+            swal(err.message)
         })
     }
 }
@@ -64,14 +67,14 @@ export const startRemoveBill = (id)=>{
             .then((response)=>{
                 const result = response.data
                 if(Object.keys(result).includes('errors')){
-                    alert(result.message)
+                    swal(result.errors)
                 } else {
                     dispatch(Remove(result))
                     swal('successfully removed the bill')
                 }
             })
             .catch((err)=>{
-                console.log(err.message)
+                swal(err.message)
             })
     }
 }

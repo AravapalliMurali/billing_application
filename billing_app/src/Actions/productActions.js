@@ -11,13 +11,13 @@ export const startGetProducts=()=>{
         .then((response)=>{
             const result = response.data
             if(Object.keys(result).includes('errors')){
-                alert(result.message)
+                swal(result.errors)
             } else{
                 dispatch(getProduct(result))
             }
         })
         .catch((err)=>{
-            console.log(err.message)
+            swal(err.message)
         })
     }
 }
@@ -40,11 +40,14 @@ export const startAddProduct=(formData)=>{
         .then((response)=>{
             const result = response.data
             if(Object.keys(result).includes("errors")){
-                alert(result.message)
+                swal(result.errors)
             } else{
                 swal("successfully added the product ")
                 dispatch(addProduct(result))
             }
+        })
+        .catch((err)=>{
+            swal(err.message)
         })
     }
 } 
@@ -67,11 +70,14 @@ export const startRemoveProduct =(id) =>{
         .then((response)=>{
             const result  = response.data
             if(Object.keys(result).includes('errors')){
-                alert(result.message)
+                swal(result.errors)
             } else{
                 swal("successfully removed the customer ")
                 dispatch(remove(result))
             }
+        })
+        .catch((err)=>{
+            swal(err.message)
         })
     }
 }
@@ -94,14 +100,14 @@ export const startEditProduct=(formData,id)=>{
             .then((response)=>{
                 const result = response.data
                 if(Object.keys(result).includes('errors')){
-                    alert(result.message)
+                    swal(result.errors)
                 } else {
                     swal("successfully Edit the customer information")
                     dispatch(editProduct(result))
                 }
             })
             .catch((err)=>{
-                console.log(err.message)
+                swal(err.message)
             })
     }
 }

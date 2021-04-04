@@ -89,11 +89,14 @@ export default function Registration({history}){
             .then((responce)=>{
                 const result = responce.data
                 if(Object.keys(result).includes('errors')){
-                    swal(result.message)
+                    swal(result.errors)
                 } else {
                     swal('successfully created an account')
                     history.push('/login')
                 }
+            })
+            .catch((err)=>{
+                swal(err.message)
             })
 
                 // reset form 

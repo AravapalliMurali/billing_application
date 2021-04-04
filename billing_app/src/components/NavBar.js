@@ -3,7 +3,7 @@ import swal from 'sweetalert'
 import {Link , Route, withRouter} from 'react-router-dom'
 import BillContainer from './Bills/BillContainer'
 import CustomerContainer from './customers/CustomerContainer'
-import Dashboard from './DashBoard'
+import Dashboard from './Dashboard/DashBoard'
 import MyAccount from './MyAccount'
 import productContainer from './Products/ProductContainer'
 import Home from './userAuth/Home'
@@ -15,6 +15,7 @@ import {AppBar, Button, Toolbar, Typography , IconButton , Menu , MenuItem} from
 import { makeStyles} from "@material-ui/core/styles"
 import MoreIcon from '@material-ui/icons/MoreVert'
 import ShoppingCartContainer from './Bills/ShopingCart/ShoppingCartContainer'
+import CustomerBills from './Bills/CustomerBills'
 
 const useStyles = makeStyles((theme)=>({
     sectionDesktop : {
@@ -115,6 +116,7 @@ const useStyles = makeStyles((theme)=>({
 
             <Route path = "/shopingcartcontainer/:id" component ={ShoppingCartContainer}/>
             <Route path ="/billcontainer" component = {BillContainer}/>
+            <Route path = "/customerbills/:id" component = {CustomerBills}/>
             {mobileMenu}
         </Fragment>
     )
