@@ -1,16 +1,18 @@
 import React,{useState,useEffect} from 'react'
-import swal from 'sweetalert'
 import Cart from './Cart'
-import {useDispatch} from 'react-redux'
+import {useDispatch , useSelector} from 'react-redux'
 import{startGetProducts} from '../../../Actions/productActions'
 import ShoppingProducts from './ShoppingProducts'
-import {addItems} from '../../../Actions/cartAction'
 import {Container , Typography ,Grid } from '@material-ui/core'
 
 export default function ShoppingCartContainer(props) {
     const {id} = props.match.params
     const dispatch = useDispatch()
     const [cartItems , setCartItems] = useState([])
+
+    const customerName = useSelector((state)=>{
+        return state.customers.find(ele=>ele._id === id)
+    })
 
     useEffect(()=>{
         dispatch(startGetProducts())
@@ -39,21 +41,6 @@ export default function ShoppingCartContainer(props) {
             )
         }
     }
-    const handleCheckOut = () => {
-        swal({
-            title:'Are you to checkOut and process for Generating  bill',
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((conformation) => {
-            if(conformation){
-                //swal("Good job!", "You clicked the button!", "success");
-                swal("Thank u for shopping!", " Have a Great Day!", "Successfully send the cart products to Genrate the bill");
-                dispatch(addItems(cartItems))
-            }
-          })
-    }
 
     return (
         <div>
@@ -63,12 +50,13 @@ export default function ShoppingCartContainer(props) {
                         Products
                     </Typography>
                 </Grid>
+                {id && <p> Hi <u><b>{customerName && customerName.name} </b>!</u>  welcome to Bills shopping slot </p> }
                 <Grid container  spacing={3}>
                     <Grid item xs={8}>
                         <ShoppingProducts addItem={addItem}/>
                     </Grid>
                     <Grid style ={{position:"relative", top:"30",textAlign:"center"}} item xs={4}>
-                        <Cart cartItems = {cartItems} addItem = {addItem} handleCheckOut ={handleCheckOut} 
+                        <Cart cartItems = {cartItems} addItem = {addItem} 
                         removeProduct = {removeProduct} CustomerId ={id}/>
                     </Grid>
                 </Grid>

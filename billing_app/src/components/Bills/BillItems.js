@@ -3,7 +3,9 @@ import {useDispatch , useSelector} from 'react-redux'
 import { startRemoveBill } from '../../Actions/billActions'
 import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Container, Grid, Typography} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
-
+import { Link } from 'react-router-dom'
+import DeleteIcon from '@material-ui/icons/Delete';
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 
 const useStyles = makeStyles((theme)=>({
     root : {
@@ -77,7 +79,8 @@ export default function BillItems({_id,date,customer ,lineItems}){
                                 <Typography variant ="subtitle2">Total: {TotalPrice}</Typography>
                             </CardContent>
                             <CardActions>
-                                <Button onClick={handleRemove} color="secondary">Remove</Button>
+                                <Button onClick={handleRemove} color="secondary"><DeleteIcon/></Button>
+                                <Button component = {Link} to = {`/uniquebill/${_id}`}><PictureAsPdfIcon/></Button>
                             </CardActions>
                         </Card>
                     </Grid>

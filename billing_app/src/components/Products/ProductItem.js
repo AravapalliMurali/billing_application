@@ -4,6 +4,9 @@ import { startRemoveProduct} from '../../Actions/productActions'
 import EditProduct from './EditProduct'
 import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid,  Typography} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+
 
 const useStyles = makeStyles((theme)=>({
     root : {
@@ -46,7 +49,6 @@ export default function ProductItem({_id , name , price}){
             {toggle ? 
              (<div>
                 <EditProduct id = {_id} name = {name} price = {price} handleToggle ={handleToggle}/>
-                <Button onClick ={handleToggle}>Cancel</Button>
             </div>) : (
             <div elevation={4} className ={classes.root} >
                 <Grid container spacing ={2}>
@@ -58,8 +60,8 @@ export default function ProductItem({_id , name , price}){
                                 <Typography variant ="subtitle1" >Price :${price} rs/.</Typography>
                             </CardContent>
                             <CardActions>
-                                <Button onClick ={handleRemove}>Remove</Button>
-                                <Button onClick = {handleToggle}>Edit</Button>
+                                <Button color ="secondary" onClick ={handleRemove}><DeleteIcon/></Button>
+                                <Button onClick = {handleToggle}><EditIcon/></Button>
                             </CardActions>
                         </Card>
                     </Grid>

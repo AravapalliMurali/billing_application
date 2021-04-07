@@ -83,6 +83,8 @@ export default function ProductForm({id , name : title , price : cost , handleTo
                 {formError.phNumber && <span>{formError.phNumber}</span>}<br/>
 
                 <Button type="submit" variant="contained" color="secondary" margin="left"> ADD </Button>
+                {handleToggle && <Button onClick = {handleToggle} variant ="contained"  margin ="left"  color ="secondary">cancel</Button>}
+
             </form>
                 </Paper>
                 </Grid>

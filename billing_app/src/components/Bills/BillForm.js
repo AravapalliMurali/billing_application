@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {useDispatch} from "react-redux"
 import { startAddBill } from '../../Actions/billActions'
+import {Button, Container, Paper, TextField, Grid ,Typography ,Box} from '@material-ui/core'
 
 export default function BillForm({Customerid ,Items}){
 
@@ -9,7 +10,8 @@ export default function BillForm({Customerid ,Items}){
 
     const [date , setDate] = useState('')
     const [customerId , setCustomerId] = useState(Customerid ? Customerid :'')
-    //console.log("customerid:", Customerid)
+    const [formError , setFormError ] = useState({})
+    const error = {}
 
     const handleInput =(e)=>{
         const input = e.target.name
@@ -17,6 +19,13 @@ export default function BillForm({Customerid ,Items}){
             setDate(e.target.value)
         } else if(input === "id"){
             setCustomerId(e.target.value)
+        }
+    }
+
+    const runValidation = ()=>{
+
+        if(customerId.trim().length === 0){
+            error.customerid = 'customer can not be  empty ' 
         }
     }
 
@@ -31,27 +40,53 @@ export default function BillForm({Customerid ,Items}){
     const handleSubmit =(e)=>{
         e.preventDefault()
 
-        const formData = {
-            date : date ,//moment().format('MMMM Do YYYY, h:mm:ss a'),
-            customer : customerId ,
-            lineItems : line()
+        //validation 
+        runValidation()
+
+        if(Object.keys(error).length === 0){
+            setFormError({})
+
+            const formData = {
+                date : date ,//moment().format('MMMM Do YYYY, h:mm:ss a'),
+                customer : customerId ,
+                lineItems : line()
+            }
+    
+            dispatch(startAddBill(formData))
+    
+            setDate('')
+            setCustomerId('')
+            
+        } else {
+            setFormError(error)
         }
-
-        dispatch(startAddBill(formData))
-
-        setDate('')
-        setCustomerId('')
+        
     }
     return(
         <div>
-            <form onSubmit = {handleSubmit}>
-                <input type = "date" value = {date} onChange = {handleInput} name = "date"/><br/>
+            <Container>
+            <Grid>
+                <Paper component ={Box} width ="60%" mx= "auto" p={6}>
+                <Typography variant ="h5">
+                    Add Product Form
+                </Typography>
+                    <form onSubmit = {handleSubmit}>
+                        <TextField fullWidth margin ="normal" variant ="outlined" color ="secondary"
+                         type = "date" value = {date} onChange = {handleInput} name = "date"/>
+                        {formError.date && <span>{formError.date}</span>}<br/>
 
-                <input type = "text" value = {customerId} onChange = {handleInput} name = "id" placeholder="customerid"/><br/>
-                <br/>
 
-                <input type = "submit" value = "Generate"/>
-            </form>
+                        <TextField fullWidth margin ="normal" variant ="outlined" color ="secondary"
+                        label="Customer Id" type = "text" value = {customerId} onChange = {handleInput} name = "id" placeholder="customerid"/>
+                        {formError.customerid && <span>{formError.customerid}</span>}<br/>
+
+
+                        <Button type="submit" variant="contained" color="secondary" margin="left"> Generate </Button>
+
+                    </form>
+                </Paper>
+                </Grid>
+            </Container>
         </div>
     )
 }

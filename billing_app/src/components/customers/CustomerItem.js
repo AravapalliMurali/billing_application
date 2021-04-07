@@ -6,6 +6,10 @@ import {Link} from 'react-router-dom'
 import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid, IconButton, Typography} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import ReceiptIcon from '@material-ui/icons/Receipt';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+
 
 const useStyles = makeStyles((theme)=>({
     root : {
@@ -62,9 +66,9 @@ export default function CustomerItem({_id , name , email , mobile}){
                                 <Typography variant ="subtitle1" >Mobile : {mobile}</Typography>
                             </CardContent>
                             <CardActions>
-                                <Button onClick ={handleRemove}>Remove</Button>
-                                <Button onClick = {handleToggle}>Edit</Button>
-                                <Button  component={Link} to={`/shopingcartcontainer/${_id}`}>BuyItems</Button>
+                                <Button onClick ={handleRemove}><DeleteIcon/></Button>
+                                <Button onClick = {handleToggle}><EditIcon/></Button>
+                                <Button  component={Link} to={`/shopingcartcontainer/${_id}`}><ShoppingBasketIcon/>BuyItems</Button>
                             </CardActions>
                         </Card>
                     </Grid>

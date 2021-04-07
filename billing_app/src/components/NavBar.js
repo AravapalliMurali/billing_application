@@ -16,6 +16,7 @@ import { makeStyles} from "@material-ui/core/styles"
 import MoreIcon from '@material-ui/icons/MoreVert'
 import ShoppingCartContainer from './Bills/ShopingCart/ShoppingCartContainer'
 import CustomerBills from './Bills/CustomerBills'
+import UniqueBill from './Bills/UniqueBill'
 
 const useStyles = makeStyles((theme)=>({
     sectionDesktop : {
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme)=>({
                   <div>
                      <MenuItem component ={Link} onClick={closeMobileMenu}  to = "/account">MyAccount</MenuItem>
                      <MenuItem component ={Link} onClick={closeMobileMenu} to ="/customers" >Customers</MenuItem>
+                     <MenuItem component ={Link} onClick={closeMobileMenu} to ="/shopingcartcontainer">Shopping Items</MenuItem>
                      <MenuItem component ={Link} onClick={closeMobileMenu} to ="/products" >Products</MenuItem>
                      <MenuItem component ={Link} onClick={closeMobileMenu} to ="/bills" >Bills Generator</MenuItem>
                      <MenuItem component ={Link} onClick={closeMobileMenu} to ="/dashboard" >Dashboard</MenuItem>
@@ -79,6 +81,7 @@ const useStyles = makeStyles((theme)=>({
                             <React.Fragment>
                                 <Button color ="secondary" component={Link} to = "/account">MyAccount</Button>
                                 <Button color ="secondary" component ={Link} to ="/customers" >Customers</Button>
+                                <Button color ="secondary" component ={Link} to ="/shopingcartcontainer">Shopping Items</Button>
                                 <Button color ="secondary" component ={Link} to ="/products" >Products</Button>
                                 <Button color ="secondary" component ={Link} to ="/bills" >Bills Generator</Button>
                                 <Button color ="secondary" component ={Link} to ="/dashboard" >Dashboard</Button>
@@ -105,7 +108,7 @@ const useStyles = makeStyles((theme)=>({
 
             <Route path ="/" component ={Home} exact ={true}/>
             <Route path ="/account" component ={MyAccount} />
-            <Route path ="/customers" component ={CustomerContainer} />
+            <Route path ="/customers" component ={CustomerContainer} exact = {true} />
             <Route path ="/products" component ={productContainer} />
             <Route path ="/bills" component ={BillContainer} />
             <Route path ="/dashboard" component ={Dashboard} />
@@ -115,8 +118,10 @@ const useStyles = makeStyles((theme)=>({
             }} />
 
             <Route path = "/shopingcartcontainer/:id" component ={ShoppingCartContainer}/>
+            <Route path = "/shopingcartcontainer" component ={ShoppingCartContainer} exact = {true}/>
             <Route path ="/billcontainer" component = {BillContainer}/>
             <Route path = "/customerbills/:id" component = {CustomerBills}/>
+            <Route path = '/uniquebill/:id' component ={UniqueBill}/>
             {mobileMenu}
         </Fragment>
     )
