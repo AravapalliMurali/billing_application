@@ -3,7 +3,6 @@ import swal from 'sweetalert'
 import {useDispatch} from 'react-redux'
 import {withRouter} from "react-router-dom"
 import {Container, Grid, Paper,Box, Typography, Button} from '@material-ui/core'
-//import Autocomplete from '@material-ui/lab/Autocomplete';
 import {addItems} from '../../../Actions/cartAction'
 
 
@@ -44,14 +43,6 @@ const  Cart=(props) =>{
                 <Paper component ={Box} width ="60%" mx = "auto"  p={6}>
                     <Typography variant ="h5"> Cart Items - {cartItems.length}</Typography>
                     <Typography variant ="h6">{cartItems.length === 0 && 'cart is empty'}</Typography>
-                    {/* <Autocomplete
-                        id="combo-box-demo"
-                        options={top100Films}
-                        getOptionLabel={(option) => option.title}
-                        style={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-                    /> */}
-
                     <Grid>
                     {cartItems.map(ele=>{
                     return (

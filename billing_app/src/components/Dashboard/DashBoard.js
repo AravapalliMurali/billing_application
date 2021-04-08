@@ -110,7 +110,7 @@ export default function Dashboard(){
                      <Typography variant ="h5"> Latest Bills </Typography>
                 </Grid>
                 <Grid container  spacing={2} className ={classes.root}>
-                    <Grid container spacing={2} item xs={7} >
+                    <Grid container spacing={2} item xs={7}  >
                         {latestBills.map(ele =>{
                             return (
                             <Grid item xs={5} key={ele._id}>
@@ -118,7 +118,7 @@ export default function Dashboard(){
                             </Grid> )
                         })}
                     </Grid>
-                    <Grid  item xs={4}> 
+                    <Grid  item xs> 
                         <Graph customers ={customersCount} products ={productsCount} bills ={billsCount}/>
                     </Grid>
                 </Grid>

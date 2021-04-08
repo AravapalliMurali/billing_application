@@ -4,8 +4,10 @@ import {useSelector} from 'react-redux'
 import { TextField ,InputAdornment, Grid, Typography } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'; 
 
+
 export default function ShoppingProducts({addItem}) {
     const [search , setSearch] = useState('')
+    
     const products = useSelector(state=> state.products)
 
     const handleInput = (e)=>{
@@ -23,8 +25,10 @@ export default function ShoppingProducts({addItem}) {
         e.preventDefault()
     }
     return (
-        <div>
+        <div> 
                 <form onSubmit = {handleSubmit}>
+                <Grid container > 
+                <Grid item xs ={12} sm ={6}>
                     <TextField type = "text" value = {search} onChange = {handleInput} placeholder ="search Customer" 
                     fullWidth variant = "outlined" color ="secondary" margin ="normal" InputProps={{
                         startAdornment :(
@@ -33,6 +37,8 @@ export default function ShoppingProducts({addItem}) {
                             </InputAdornment>
                         )
                     }}/>
+                </Grid>
+                </Grid>
                 </form>
                 <Grid>
                     <Typography variant = "h4" align ="left">

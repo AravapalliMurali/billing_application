@@ -68,7 +68,7 @@ export default function BillForm({Customerid ,Items}){
             <Grid>
                 <Paper component ={Box} width ="60%" mx= "auto" p={6}>
                 <Typography variant ="h5">
-                    Add Product Form
+                    Add Bill Form
                 </Typography>
                     <form onSubmit = {handleSubmit}>
                         <TextField fullWidth margin ="normal" variant ="outlined" color ="secondary"
