@@ -9,7 +9,7 @@ export default function UniqueBill(props) {
     const [bill , setBill] = useState({})
 
     useEffect(()=>{
-        axios.get(`http://dct-billing-app.herokuapp.com/api//bills/${id}` , {
+        axios.get(`https://dct-billing-app.herokuapp.com/api//bills/${id}` , {
             headers : {
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             }})
