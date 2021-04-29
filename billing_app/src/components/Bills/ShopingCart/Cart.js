@@ -2,7 +2,7 @@ import React from 'react'
 import swal from 'sweetalert'
 import {useDispatch} from 'react-redux'
 import {withRouter} from "react-router-dom"
-import {Container, Grid, Paper,Box, Typography, Button} from '@material-ui/core'
+import {Container, Grid, Paper,Box, Typography, Button, Card} from '@material-ui/core'
 import {addItems} from '../../../Actions/cartAction'
 
 
@@ -13,6 +13,7 @@ const  Cart=(props) =>{
     const gstPrice = parseInt(totalProductsPrice * 0.18)
     const shippingCharges  = totalProductsPrice < 1500 ? 0 : 50
     const totalAmount = totalProductsPrice + gstPrice + shippingCharges
+    
 
     const handleCheckOut = () => {
         swal({
@@ -46,13 +47,13 @@ const  Cart=(props) =>{
                     <Grid>
                     {cartItems.map(ele=>{
                     return (
-                        <blockquote key={ele._id}>
+                        <Card key={ele._id}>
                             <h4>Product name : {ele.name}</h4>
                             <h4>Product price : {ele.price}</h4>
-                            <button onClick={()=>{addItem(ele)}}>+</button>|<button onClick={()=>{removeProduct(ele)}}>-</button>
-                            <h4>Quantity :{ele.quantity} X Rs.{ele.price.toFixed(2)}</h4>
+                            <button onClick={()=>{addItem(ele)}}>+</button> <b> {ele.quantity} </b> <button onClick={()=>{removeProduct(ele)}}>-</button> <br/>
+                            <h4> productTotal : {ele.quantity * ele.price.toFixed(2)}</h4> 
                             <hr/>
-                        </blockquote>
+                        </Card>
                 )})}
                     </Grid>
 

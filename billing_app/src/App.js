@@ -20,6 +20,7 @@ export default function App(){
 
   useEffect(()=>{
     if(localStorage.getItem('token')){
+      
       handleToggle()
     }
   },[])
