@@ -4,7 +4,7 @@ import swal from 'sweetalert'
 
 export const startGetProducts=()=>{
     return(dispatch)=>{
-        axios.get('http://dct-billing-app.herokuapp.com/api/products', {
+        axios.get('https://dct-billing-app.herokuapp.com/api/products', {
             headers :{
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             }})
@@ -33,7 +33,7 @@ export const getProduct= (data)=>{
 
 export const startAddProduct=(formData)=>{
     return (dispatch)=>{
-        axios.post('http://dct-billing-app.herokuapp.com/api/products', formData , {
+        axios.post('https://dct-billing-app.herokuapp.com/api/products', formData , {
             headers :{
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             }})
@@ -63,7 +63,7 @@ export const addProduct = (data)=>{
 
 export const startRemoveProduct =(id) =>{
     return (dispatch)=>{
-        axios.delete(`http://dct-billing-app.herokuapp.com/api/products/${id}`,  {
+        axios.delete(`https://dct-billing-app.herokuapp.com/api/products/${id}`,  {
             headers:{
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             } })
@@ -93,7 +93,7 @@ export const remove =(data) =>{
 
 export const startEditProduct=(formData,id)=>{
     return (dispatch)=>{
-        axios.put(`http://dct-billing-app.herokuapp.com/api/products/${id}`, formData ,{
+        axios.put(`https://dct-billing-app.herokuapp.com/api/products/${id}`, formData ,{
             headers:{
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             } })
