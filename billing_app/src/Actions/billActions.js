@@ -5,7 +5,7 @@ import swal from 'sweetalert'
 
 export const startGetBills=()=>{
     return (dispatch)=>{
-        axios.get('http://dct-billing-app.herokuapp.com/api/bills' , {
+        axios.get('https://dct-billing-app.herokuapp.com/api/bills' , {
             headers : {
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             }})
@@ -32,7 +32,7 @@ export const getBill =(data)=>{
 
 export const startAddBill= (FormData)=>{
     return (dispatch)=>{
-        axios.post('http://dct-billing-app.herokuapp.com/api/bills' ,FormData, {
+        axios.post('https://dct-billing-app.herokuapp.com/api/bills' ,FormData, {
             headers : {
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             }})
@@ -60,7 +60,7 @@ export const AddBill=(data)=>{
 
 export const startRemoveBill = (id)=>{
     return(dispatch)=>{
-        axios.delete(`http://dct-billing-app.herokuapp.com/api/bills/${id}` , {
+        axios.delete(`https://dct-billing-app.herokuapp.com/api/bills/${id}` , {
             headers : {
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             }})
