@@ -6,7 +6,7 @@ import swal from 'sweetalert'
 
 export const startgetUser = ()=>{
     return (dispatch)=>{
-        axios.get('http://dct-billing-app.herokuapp.com/api/users/account' , {
+        axios.get('https://dct-billing-app.herokuapp.com/api/users/account' , {
             headers:{
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
             } })
